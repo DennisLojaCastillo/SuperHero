@@ -1,8 +1,15 @@
-public class Database {
-    private SuperHero[] heroDatabase = new SuperHero[5];
+import java.util.ArrayList;
 
-    public void addSuperhero(String name, String superheroName, String power, int year, double strength) {
-        SuperHero hero = new SuperHero(name, superheroName, power, year, strength);
+public class Database {
+
+    public void addSuperhero(String name, String alias, String power, int year, double strength) {
+        heroes.add(new Superhero(name, alias, power, year, strength));
+    }
+
+    private ArrayList<Superhero> heroes = new ArrayList();
+
+    public ArrayList<Superhero> getHeroes() {
+        return heroes;
     }
 
 }

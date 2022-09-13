@@ -1,16 +1,16 @@
-public class SuperHero {
+public class Superhero {
     // Attributter
     private String name;
-    private String superheroName;
+    private String alias;
     private String power;
     private int year;
     private double strength;
 
     //------------------------------------------------------------------------------------------------
     //Constructor
-    public SuperHero(String name, String superheroName, String power, int year, double strength) {
+    public Superhero(String name, String alias, String power, int year, double strength) {
         this.name = name;
-        this.superheroName = superheroName;
+        this.alias = alias;
         this.power = power;
         this.year = year;
         this.strength = strength;
@@ -20,8 +20,8 @@ public class SuperHero {
     // Getter & Setter
 
 
-    public String getSuperheroName() {
-        return superheroName;
+    public String getAlias() {
+        return alias;
     }
 
     public String getName() {
@@ -38,5 +38,14 @@ public class SuperHero {
 
     public double getStrength() {
         return strength;
+    }
+
+
+    public String toString() {
+        return "Navn: " + name +
+                "\nAlias: " + alias +
+                "\nSuperkræft: " + power +
+                "\nUdgivelsesår: " + year +
+                "\nStyrke: " + strength;
     }
 }
