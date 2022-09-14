@@ -42,10 +42,10 @@ public class Superhero {
 
 
     public String toString() {
-        return "Navn: " + name +
+        return "Real name: " + name +
                 "\nAlias: " + alias +
-                "\nSuperkræft: " + power +
-                "\nUdgivelsesår: " + year +
-                "\nStyrke: " + strength;
+                "\nSuperpower: " + power +
+                "\nYear of publication: " + year +
+                "\nStrength: " + strength + "\n";
     }
 }
