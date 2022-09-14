@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
 public class Main {
-    private Database database;
+    private Database db;
     Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         Main m = new Main();
-        m.database = new Database();
+        m.db = new Database();
         m.startProgram();
     }
 
@@ -20,6 +20,7 @@ public class Main {
             System.out.println("""                  
                     1. Add new Superhero
                     2. Superhero List
+                    3. Search Superhero
                     9. End Program
                     """);
 
@@ -35,12 +36,12 @@ public class Main {
             addSuperhero(); //Crud operation
         else if (userChoice == 2)
             superheroList(); //Crud operation
-
+        else if (userChoice == 3)
+            searchInput();
     }
 
     public void addSuperhero() {
         System.out.println("Enter the superhero's real name: ");
-        Scanner scanner = new Scanner(System.in);
         String name = scanner.nextLine();
 
         System.out.println("Enter the superhero's alias: ");
@@ -55,13 +56,22 @@ public class Main {
         System.out.println("Enter the superhero's strength: ");
         double strength = scanner.nextDouble();
 
-        database.addSuperhero(name, alias, power, year, strength);
+        db.addSuperhero(name, alias, power, year, strength);
     }
 
     public void superheroList() {
-        for (Superhero superhero : database.getHeroes()) {
-            System.out.println(superhero);
-        }
+        System.out.println("This is a list over your Superhero's\n");
+        db.superheroList();
     }
 
+    public void searchInput() {
+        System.out.println("Enter name: ");
+        String searchSC = scanner.nextLine();
+        db.searchTool();
+    }
+
+
 }
+
+
+

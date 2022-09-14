@@ -8,8 +8,26 @@ public class Database {
 
     private ArrayList<Superhero> heroes = new ArrayList();
 
-    public ArrayList<Superhero> getHeroes() {
-        return heroes;
+    public void superheroList() {
+        for (Superhero superhero : heroes) {
+            System.out.println(superhero);
+        }
     }
 
+    public void searchTool() {
+        boolean found = false;
+        for (Superhero searchHero : heroes) {
+            String searchInput = new String();
+            if (searchHero.getAlias().equals(searchInput)) {
+                System.out.println("Here is what you search for: \n" + searchHero.getAlias());
+                found = true;
+            }
+        }
+    }
 }
+
+
+
+
+
+
