@@ -2,7 +2,9 @@ import java.util.Scanner;
 
 public class Main {
     private Database db;
+
     Scanner scanner = new Scanner(System.in);
+
 
     public static void main(String[] args) {
         Main m = new Main();
@@ -60,18 +62,25 @@ public class Main {
     }
 
     public void superheroList() {
-        System.out.println("This is a list over your Superhero's\n");
-        db.superheroList();
+
+        if (db.getHeros().size() == 0) {
+            System.out.println("There's no Superhero registered...\n");
+        } else {
+            System.out.println("List of Superhero's registered\n");
+            for (Superhero superhero : db.getHeros()) {
+                System.out.println(superhero);
+            }
+        }
     }
 
     public void searchInput() {
-        System.out.println("Enter name: ");
-        String searchSC = scanner.nextLine();
-        db.searchTool();
+        System.out.println("Enter Superhero name: ");
+        String findHero = scanner.nextLine();
+        Superhero superhero = db.searchInput(findHero);
+        if (superhero != null) {
+            System.out.println("Information" + "\n" + superhero);
+        } else {
+            System.out.println("Found nothing with this name.");
+        }
     }
-
-
 }
-
-
-
