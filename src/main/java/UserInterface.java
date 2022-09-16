@@ -31,7 +31,7 @@ public class UserInterface {
         else if (userChoice == 2)
             superheroList(); //Crud operation
         else if (userChoice == 3)
-            searchInput();
+            searchTool();
     }
 
     public void addSuperhero() {
@@ -59,20 +59,18 @@ public class UserInterface {
             System.out.println("There's no Superhero registered...\n");
         } else {
             System.out.println("List of Superhero's registered\n");
+            System.out.println(db.getHeros().size());
             for (Superhero superhero : db.getHeros()) {
                 System.out.println(superhero);
             }
         }
     }
 
-    public void searchInput() {
-        System.out.println("Enter Superhero name: ");
-        String findHero = scanner.nextLine();
-        Superhero superhero = db.searchInput(findHero);
-        if (superhero != null) {
-            System.out.println("Information" + "\n" + superhero);
-        } else {
-            System.out.println("Found nothing with this name.");
-        }
+    public void searchTool() {
+        searchTool tool = new searchTool();
+        tool.startProgram();
     }
+
+
 }
+
