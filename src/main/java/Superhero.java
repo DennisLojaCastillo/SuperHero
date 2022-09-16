@@ -59,6 +59,8 @@ public class Superhero {
         this.strength = strength;
     }
 
+    //------------------------------------------------------------------------------------------------
+    // ToString - This will print out the Superhero
     public String toString() {
         return "Real name: " + name +
                 "\nAlias: " + alias +

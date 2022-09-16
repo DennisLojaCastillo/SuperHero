@@ -36,8 +36,41 @@ public class Database {
         }
         return null;
     }
+
+    public Superhero searchByPower(String power) {
+        for (Superhero superhero : heroes) {
+            if (superhero.getPower().equals(power)) {
+                return superhero;
+            }
+        }
+        return null;
+    }
 }
 
+
+
+
+
+
+
+
+/* public Superhero searchByYear(int year) {
+        for (Superhero superhero : heroes) {
+            if (superhero.getYear().equals(year)) {
+                return superhero;
+            }
+        }
+        return null;
+    }
+
+    public Superhero searchByStrength(String name) {
+        for (Superhero superhero : heroes) {
+            if (superhero.getYear().equals(name)) {
+                return superhero;
+            }
+        }
+        return null;
+    }*/
 
 
 

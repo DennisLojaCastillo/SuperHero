@@ -1,9 +1,11 @@
 import java.util.Scanner;
 
 public class UserInterface {
-    private Database db = new Database();
 
+    private Database db = new Database();
     Scanner scanner = new Scanner(System.in);
+
+    //-----------------------------------------------------------------
     public void startProgram() {
         int userChoice = -1;
 
@@ -35,6 +37,8 @@ public class UserInterface {
 
     }
 
+    //-----------------------------------------------------------------
+
     public void addSuperhero() {
         System.out.println("Enter the superhero's real name: ");
         String name = scanner.nextLine();
@@ -54,10 +58,12 @@ public class UserInterface {
         db.addSuperhero(name, alias, power, year, strength);
     }
 
+    //-----------------------------------------------------------------
+
     public void superheroList() {
 
         if (db.getHeros().size() == 0) {
-            System.out.println("There's no Superhero registered...\n");
+            System.out.println("\nThere's no Superhero registered...\n");
         } else {
             System.out.println("List of Superhero's registered\n");
             System.out.println(db.getHeros().size());
@@ -66,6 +72,8 @@ public class UserInterface {
             }
         }
     }
+
+    //-----------------------------------------------------------------
 
     public void startSearchTool() {
 
@@ -79,9 +87,7 @@ public class UserInterface {
                       Search by:                   
                     1. Alias name
                     2. Real name
-                    3. Power
-                    4. Year
-                    5. Strength
+                    3. Power                   
                     9. Back to menu
                     """);
 
@@ -91,6 +97,8 @@ public class UserInterface {
         }
     }
 
+    //-----------------------------------------------------------------
+
     private void toolHandlingUserChoice(int searchUserChoice) {
         if (searchUserChoice == 1)
             searchByAlias(); //Crud operation
@@ -98,11 +106,9 @@ public class UserInterface {
             searchByName(); //Crud operation
         else if (searchUserChoice == 3)
             searchByPower();
-        else if (searchUserChoice == 4)
-            searchByYear();
-        else if (searchUserChoice == 5)
-            searchByStrength();
     }
+
+    //-----------------------------------------------------------------
 
     public void searchByAlias() {
 
@@ -129,16 +135,43 @@ public class UserInterface {
     }
 
     public void searchByPower() {
-
-    }
-
-    public void searchByYear() {
-
-    }
-
-    public void searchByStrength() {
-
+        System.out.println("Search Superhero by superpower: ");
+        String findHero = scanner.nextLine();
+        Superhero superhero = db.searchByPower(findHero);
+        if (superhero != null) {
+            System.out.println("\nInformation\n" + superhero);
+        } else {
+            System.out.println("\nFound nothing with this name.\n");
+        }
     }
 
 }
 
+
+
+/* public void searchByYear() {
+        System.out.println("Search Superhero by year: ");
+        String findHero = scanner.nextLine();
+        Superhero superhero = db.searchByYear(Integer.parseInt(findHero));
+        if (superhero != null) {
+            System.out.println("\nInformation\n" + superhero);
+        } else {
+            System.out.println("\nFound nothing with this name.\n");
+        }
+    }
+
+    public void searchByStrength() {
+        System.out.println("Search Superhero by strength: ");
+        String findHero = scanner.nextLine();
+        Superhero superhero = db.searchByStrength(findHero);
+        if (superhero != null) {
+            System.out.println("\nInformation\n" + superhero);
+        } else {
+            System.out.println("\nFound nothing with this name.\n");
+        }
+    }*/ //Metoder
+
+/*else if (searchUserChoice == 4)
+            searchByYear();
+        else if (searchUserChoice == 5)
+            searchByStrength();*/ // toolHandlingUserChoice
