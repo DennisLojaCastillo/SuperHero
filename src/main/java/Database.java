@@ -12,7 +12,6 @@ public class Database {
 
     public void addSuperhero(String name, String alias, String power, int year, double strength) {
         heroes.add(new Superhero(name, alias, power, year, strength));
-        System.out.println(heroes.size());
     }
 
     public ArrayList<Superhero> getHeros() {
@@ -21,8 +20,7 @@ public class Database {
 
 
     public Superhero searchByAlias(String alias) {
-        System.out.println(heroes.size());
-        for (Superhero superhero : heroes) { //TODO Bug ligger her!!!!! size = 3 men burde være size 4
+        for (Superhero superhero : heroes) {
             if (superhero.getAlias().equals(alias)) {
                 return superhero;
             }

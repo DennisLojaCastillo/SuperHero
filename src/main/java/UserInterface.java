@@ -31,7 +31,8 @@ public class UserInterface {
         else if (userChoice == 2)
             superheroList(); //Crud operation
         else if (userChoice == 3)
-            searchTool();
+            startSearchTool();
+
     }
 
     public void addSuperhero() {
@@ -66,11 +67,78 @@ public class UserInterface {
         }
     }
 
-    public void searchTool() {
-        searchTool tool = new searchTool();
-        tool.startProgram();
+    public void startSearchTool() {
+
+        int searchUserChoice = -1;
+
+        System.out.println("Welcome to the Superhero Search Engine\n" +
+                "________________________________");
+
+        while (searchUserChoice != 9) {
+            System.out.println("""
+                      Search by:                   
+                    1. Alias name
+                    2. Real name
+                    3. Power
+                    4. Year
+                    5. Strength
+                    9. Back to menu
+                    """);
+
+            searchUserChoice = scanner.nextInt();
+            scanner.nextLine(); // Håndtering af Scanner bug
+            toolHandlingUserChoice(searchUserChoice);
+        }
     }
 
+    private void toolHandlingUserChoice(int searchUserChoice) {
+        if (searchUserChoice == 1)
+            searchByAlias(); //Crud operation
+        else if (searchUserChoice == 2)
+            searchByName(); //Crud operation
+        else if (searchUserChoice == 3)
+            searchByPower();
+        else if (searchUserChoice == 4)
+            searchByYear();
+        else if (searchUserChoice == 5)
+            searchByStrength();
+    }
+
+    public void searchByAlias() {
+
+        System.out.println("Search Superhero by alias name: ");
+        String findHero = scanner.nextLine();
+        Superhero superhero = db.searchByAlias(findHero);
+        if (superhero != null) {
+            System.out.println("\nInformation\n" + superhero);
+        } else {
+            System.out.println("\nFound nothing with this name.\n");
+        }
+    }
+
+    public void searchByName() {
+        System.out.println("Search Superhero by real name: ");
+        String findHero = scanner.nextLine();
+        Superhero superhero = db.searchByName(findHero);
+        if (superhero != null) {
+            System.out.println("\nInformation\n" + superhero);
+        } else {
+            System.out.println("\nFound nothing with this name.\n");
+        }
+
+    }
+
+    public void searchByPower() {
+
+    }
+
+    public void searchByYear() {
+
+    }
+
+    public void searchByStrength() {
+
+    }
 
 }
 
