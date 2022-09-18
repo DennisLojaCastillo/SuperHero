@@ -60,7 +60,7 @@ public class Superhero {
     }
 
     //------------------------------------------------------------------------------------------------
-    // ToString - This will print out the Superhero
+    // ToString - Dette printer info om en superhelt
     public String toString() {
         return "Real name: " + name +
                 "\nAlias: " + alias +

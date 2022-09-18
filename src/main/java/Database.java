@@ -7,7 +7,7 @@ public class Database {
     public Database() {
         heroes.add(new Superhero("Peter Parker", "Spider Man", "Spider-Power", 1992, 11.21));
         heroes.add(new Superhero("Clark Kent", "Super Man", "Strong", 1943, 34.31));
-        heroes.add(new Superhero("Clark Kent", "Super Man", "Strong", 1943, 34.31));
+        heroes.add(new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21));
     }
 
     public void addSuperhero(String name, String alias, String power, int year, double strength) {
@@ -24,6 +24,9 @@ public class Database {
             if (superhero.getAlias().equals(alias)) {
                 return superhero;
             }
+            if (superhero.getAlias().equalsIgnoreCase(alias)) {
+                return superhero;
+            }
         }
         return null;
     }
@@ -31,6 +34,9 @@ public class Database {
     public Superhero searchByName(String name) {
         for (Superhero superhero : heroes) {
             if (superhero.getName().equals(name)) {
+                return superhero;
+            }
+            if (superhero.getName().equalsIgnoreCase(name)) {
                 return superhero;
             }
         }
@@ -42,6 +48,9 @@ public class Database {
             if (superhero.getPower().equals(power)) {
                 return superhero;
             }
+            if (superhero.getPower().equalsIgnoreCase(power)) {
+                return superhero;
+            }
         }
         return null;
     }
@@ -50,7 +59,11 @@ public class Database {
 
 
 
-
+/*public Database() {
+        heroes.add(new Superhero("Peter Parker", "Spider Man", "Spider-Power", 1992, 11.21));
+        heroes.add(new Superhero("Clark Kent", "Super Man", "Strong", 1943, 34.31));
+        heroes.add(new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21));
+    }*/ //Test Data
 
 
 
@@ -70,7 +83,7 @@ public class Database {
             }
         }
         return null;
-    }*/
+    }*/ //Metoder til UserInterFace
 
 
 
