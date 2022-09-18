@@ -69,3 +69,16 @@ public class Superhero {
                 "\nStrength: " + strength + "\n";
     }
 }
+
+/*
+    public String toString() {
+        return  "%-20s%-5s%-20s%-20s%-20s%-5s%-20d%-20s%-5s%-20d",
+        "real name",
+
+ "Real name: " + name +
+                "\nAlias: " + alias +
+                "\nSuperpower: " + power +
+                "\nYear of publication: " + year +
+                "\nStrength: " + strength + "\n";
+
+*/

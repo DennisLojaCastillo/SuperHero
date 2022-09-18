@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -55,7 +54,7 @@ public class UserInterface {
         System.out.println("Enter the superhero's year of publication: ");
         int year = scanner.nextInt();
 
-        System.out.println("Enter the superhero's strength: *OBS You need to tab with comma (,)*");
+        System.out.println("Enter the superhero's strength power: (Range is from 1-10) \n*OBS You need to tab with comma (,)*");
         double strength = scanner.nextDouble();
 
         db.addSuperhero(name, alias, power, year, strength);
@@ -68,7 +67,6 @@ public class UserInterface {
             System.out.println("\nThere's no Superhero registered...\n");
         } else {
             System.out.println("List of Superhero's registered\n");
-            System.out.println(db.getHeros().size());
             for (Superhero superhero : db.getHeros()) {
                 System.out.println(superhero);
             }
@@ -86,7 +84,7 @@ public class UserInterface {
 
         while (searchUserChoice != 9) {
             System.out.println("""
-                      Search by:                   
+                      Search by:               
                     1. Alias name
                     2. Real name
                     3. Power                   
@@ -165,34 +163,34 @@ public class UserInterface {
         System.out.println("Edit data and press ENTER. If data is not to be edited press ENTER");
 
         System.out.println("Real name: " + editHero.getName());
-        System.out.println("Please enter the new NAME below if data not to be edited press ENTER");
+        System.out.println("Please enter the new NAME below");
         String newName = scanner.nextLine();
         if (!newName.isEmpty()) {
             editHero.setName(newName);
         }
         System.out.println("Alias name: " + editHero.getAlias());
-        System.out.println("Please enter the new ALIAS name below if data not to be edited press ENTER");
+        System.out.println("Please enter the new ALIAS name below");
         String newAlias = scanner.nextLine();
         if (!newAlias.isEmpty()) {
             editHero.setAlias(newAlias);
         }
 
         System.out.println("Super Power: " + editHero.getPower());
-        System.out.println("Please enter the new SUPER POWER below if data not to be edited press ENTER");
+        System.out.println("Please enter the new SUPER POWER below");
         String newPower = scanner.nextLine();
         if (!newPower.isEmpty()) {
             editHero.setPower(newPower);
         }
 
         System.out.println("Year of publication: " + editHero.getYear());
-        System.out.println("Please enter the new YEAR below if data not to be edited press ENTER");
+        System.out.println("Please enter the new YEAR below");
         String newYear = scanner.nextLine();
         if (!newYear.isEmpty()) {
             editHero.setYear(Integer.parseInt(newYear));
         }
 
         System.out.println("Strength: " + editHero.getStrength());
-        System.out.println("Please enter the new STRENGTH below if data not to be edited press ENTER *OBS! You need to make a DOT (.) instead of COMMA");
+        System.out.println("Please enter the new STRENGTH below *OBS! You need to make a DOT (.) instead of COMMA");
         String newStrength = scanner.nextLine();
         if (!newStrength.isEmpty()) {
             editHero.setStrength(Double.parseDouble(newStrength));
