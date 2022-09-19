@@ -21,10 +21,9 @@ public class UserInterface {
                     9. End Program
                     """ + ConsoleColors.RESET);
 
-            userChoice = scanner.nextInt();
+            userChoice = readInteger();
             scanner.nextLine(); // Håndtering af Scanner bug
             handlingUserChoice(userChoice);
-
         }
     }
 
@@ -36,7 +35,7 @@ public class UserInterface {
         else if (userChoice == 3)
             startSearchTool();
         else if (userChoice == 4)
-            editTool();
+            editToolHandlingUserChoice();
     }
 
     //------------------------------------------------------------------------------------------------
@@ -45,16 +44,32 @@ public class UserInterface {
         System.out.println(ConsoleColors.BLUE + "Enter the superhero's real name: ");
         String name = scanner.nextLine();
 
-        System.out.println(ConsoleColors.BLUE +"Enter the superhero's alias: ");
+        System.out.println(ConsoleColors.BLUE + "Enter the superhero's alias: ");
         String alias = scanner.nextLine();
 
-        System.out.println(ConsoleColors.BLUE +"Enter the superhero's power: ");
+        System.out.println(ConsoleColors.BLUE + "Enter the superhero's power: ");
         String power = scanner.nextLine();
 
-        System.out.println(ConsoleColors.BLUE +"Enter the superhero's year of publication: ");
-        int year = scanner.nextInt();
-
-        System.out.println(ConsoleColors.BLUE +"Enter the superhero's strength power: (Range is from 1-10) \n*OBS You need to tab with comma (,)*" + ConsoleColors.RESET);
+        /*System.out.println(ConsoleColors.BLUE +"Enter the superhero's year of publication: ");
+        int year = readInteger();*/
+        System.out.println(ConsoleColors.BLUE + "Enter the superhero's year of publication: ");
+        /*int year = readInteger();*/
+        int year = 0;
+        String input; //= scanner.nextLine();
+        boolean wrongUserInput = true;
+        while (wrongUserInput) {
+            try {
+                input = scanner.nextLine();
+                year = Integer.parseInt(input);
+                wrongUserInput = false;
+            } catch (NumberFormatException e) {
+                //Fejlhåndtering
+                System.out.println("You need to enter a number");
+                //year = Integer.parseInt(input);
+            }
+        }
+        // Hvis try lykkedes ryger vi forbi catch!
+        System.out.println(ConsoleColors.BLUE + "Enter the superhero's strength power: (Range is from 1-10) \n*OBS You need to tab with comma (,)*" + ConsoleColors.RESET);
         double strength = scanner.nextDouble();
 
         db.addSuperhero(name, alias, power, year, strength);
@@ -64,7 +79,7 @@ public class UserInterface {
 
     public void superheroList() {
         if (db.getHeros().size() == 0) {
-            System.out.println(ConsoleColors.RED +"\nThere's no Superhero registered...\n" + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED + "\nThere's no Superhero registered...\n" + ConsoleColors.RESET);
         } else {
             System.out.println(ConsoleColors.GREEN_BRIGHT + "List of Superhero's registered\n" + ConsoleColors.RESET);
             for (Superhero superhero : db.getHeros()) {
@@ -79,7 +94,7 @@ public class UserInterface {
 
         int searchUserChoice = -1;
 
-        System.out.println("Welcome to the Superhero Search Engine\n" +
+        System.out.println("\nWelcome to the Superhero Search Engine\n" +
                 "________________________________");
 
         while (searchUserChoice != 9) {
@@ -87,7 +102,8 @@ public class UserInterface {
                       Search by:               
                     1. Alias name
                     2. Real name
-                    3. Power                   
+                    3. Power      
+                                 
                     9. Back to menu
                     """);
 
@@ -118,7 +134,7 @@ public class UserInterface {
         if (superhero != null) {
             System.out.println("\nInformation\n" + superhero);
         } else {
-            System.out.println("\nFound nothing with this name.\n");
+            System.out.println(ConsoleColors.RED + "\nFound nothing with this name.\n" + ConsoleColors.RESET);
         }
     }
 
@@ -129,7 +145,7 @@ public class UserInterface {
         if (superhero != null) {
             System.out.println("\nInformation\n" + superhero);
         } else {
-            System.out.println("\nFound nothing with this name.\n");
+            System.out.println(ConsoleColors.RED + "\nFound nothing with this name.\n" + ConsoleColors.RESET);
         }
 
     }
@@ -141,8 +157,36 @@ public class UserInterface {
         if (superhero != null) {
             System.out.println("\nInformation\n" + superhero);
         } else {
-            System.out.println("\nFound nothing with this name.\n");
+            System.out.println(ConsoleColors.RED + "\nFound nothing with this name.\n" + ConsoleColors.RESET);
         }
+    }
+
+    //------------------------------------------------------------------------------------------------
+
+    public void editToolHandlingUserChoice() {
+
+        int editUserChoice = -1;
+
+        System.out.println("\nWelcome to the Superhero Edit Tool\n" +
+                "________________________________");
+
+        while (editUserChoice != 9) {
+            System.out.println("""               
+                    1. Edit Superhero              
+                    9. Back to menu
+                    """);
+
+            editUserChoice = scanner.nextInt();
+            scanner.nextLine(); // Håndtering af Scanner bug
+            editToolHandlingUserChoice(editUserChoice);
+        }
+    }
+
+    //-----------------------------------
+
+    private void editToolHandlingUserChoice(int editUserChoice) {
+        if (editUserChoice == 1)
+            editTool(); //Crud operation
     }
 
     public void editTool() {
@@ -157,10 +201,11 @@ public class UserInterface {
         int numb = scanner.nextInt();
         scanner.nextLine();
 
-        Superhero editHero = db.getHeros().get(numb-1); //Index starter fra 0
+        Superhero editHero = db.getHeros().get(numb - 1); //Index starter fra 0
         System.out.println("Edit Person: " + editHero);
 
         System.out.println("Edit data and press ENTER. If data is not to be edited press ENTER");
+
 
         System.out.println("Real name: " + editHero.getName());
         System.out.println("Please enter the new NAME below");
@@ -199,6 +244,16 @@ public class UserInterface {
 
     }
 
+    //------------------------------------------------------------------------------------------------
+
+    public int readInteger() {
+        while (!scanner.hasNextInt()) {
+            String errorMsg = scanner.next();
+            System.out.println(ConsoleColors.RED + "Error! You can't enter \"" + errorMsg + "\" Enter a number." + ConsoleColors.RESET);
+        }
+        int result = scanner.nextInt();
+        return result;
+    }
 }
 
 
