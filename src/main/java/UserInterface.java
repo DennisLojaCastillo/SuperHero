@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -7,6 +6,9 @@ public class UserInterface {
     Scanner scanner = new Scanner(System.in);
 
     //------------------------------------------------------------------------------------------------
+    // Hovedmenu
+    // Brugeren udvælger en funktion
+
     public void startProgram() {
         int userChoice = -1;
 
@@ -28,9 +30,11 @@ public class UserInterface {
         }
     }
 
+    // Brugeren vælger mellem 1 og 4 til en specifik funktion.
+
     public void handlingUserChoice(int userChoice) {
         if (userChoice == 1)
-            addSuperhero(); //Crud operation
+            addToolHandlingUserChoice(); //Crud operation
         else if (userChoice == 2)
             superheroList(); //Crud operation
         else if (userChoice == 3)
@@ -40,27 +44,39 @@ public class UserInterface {
     }
 
     //------------------------------------------------------------------------------------------------
+    // Menu til oprettelse af Superhelt og giver brugeren et valg om gennemføre oprettelsen
+    // eller gå tilbage til hovedmenu.
+    public void addToolHandlingUserChoice() {
 
-    //TODO Lav en menu, så den går tilbage til hovedmenuen!
-  /*public void addToolHandlingUserChoice() {
+        int addUserChoice = -1;
 
-        int addSuperheroChoice = -1;
+        System.out.println("""
 
-        System.out.println("\nSuperhero Edit Tool\n" +
-                "________________________________");
+                Superhero add Tool
+                ________________________________
+                """);
 
-        while (addSuperheroChoice != 9) {
-            System.out.println("""
-                    1. Edit Superhero
+        while (addUserChoice != 9) {
+            System.out.println("""               
+                    1. Add New Superhero
                     9. Back to menu
                     """);
 
-            addSuperheroChoice = scanner.nextInt();
+            addUserChoice = scanner.nextInt();
             scanner.nextLine(); // Håndtering af Scanner bug
-            addSuperheroChoice(addSuperheroChoice);
+            addToolUserChoice(addUserChoice);
         }
-    }*/
+    }
 
+    //-----------------------------------
+    //TODO Her skal der laves en funktion med hvor bruger ikke kan trykke på andre tal
+    // og informere om at enten kan vælge 1 eller 9!
+    private void addToolUserChoice(int editUserChoice) {
+        if (editUserChoice == 1)
+            addSuperhero(); //Crud operation
+    }
+
+    //Oprettelsen af Superhelt
     public void addSuperhero() {
         System.out.println(ConsoleColors.BLUE + "Enter the superhero's real name: ");
         String name = scanner.nextLine();
@@ -71,33 +87,18 @@ public class UserInterface {
         System.out.println(ConsoleColors.BLUE + "Enter the superhero's power: ");
         String power = scanner.nextLine();
 
-        /*System.out.println(ConsoleColors.BLUE +"Enter the superhero's year of publication: ");
-        int year = readInteger();*/
         System.out.println(ConsoleColors.BLUE + "Enter the superhero's year of publication: ");
-        /*int year = readInteger();*/
-        int year = 0;
-        String input; //= scanner.nextLine();
-        boolean wrongUserInput = true;
-        while (wrongUserInput) {
-            try {
-                input = scanner.nextLine();
-                year = Integer.parseInt(input);
-                wrongUserInput = false;
-            } catch (NumberFormatException e) {
-                //Fejlhåndtering
-                System.out.println("You need to enter a number");
-                //year = Integer.parseInt(input);
-            }
-        }
+        int year = readInteger();
+
         // Hvis try lykkedes ryger vi forbi catch!
-        System.out.println(ConsoleColors.BLUE + "Enter the superhero's strength power: (Range is from 1-10) \n*OBS You need to tab with comma (,)*" + ConsoleColors.RESET);
-        double strength = scanner.nextDouble();
+        System.out.println(ConsoleColors.BLUE + "Enter the superhero's strength power: " + ConsoleColors.RESET);
+        double strength = readDouble();
 
         db.addSuperhero(name, alias, power, year, strength);
     }
 
     //------------------------------------------------------------------------------------------------
-
+    // Printer Superhelte liste ud.
     public void superheroList() {
         if (db.getHeros().size() == 0) {
             System.out.println(ConsoleColors.RED + "\nThere's no Superhero registered...\n" + ConsoleColors.RESET);
@@ -110,22 +111,25 @@ public class UserInterface {
     }
 
     //------------------------------------------------------------------------------------------------
+    // Søgefunktion til Superhelte databasen.
 
     public void startSearchTool() {
 
         int searchUserChoice = -1;
 
-        System.out.println("\nSuperhero Search Engine\n" +
-                "________________________________");
+        System.out.println("""
+
+                Superhero Search Engine
+                ________________________________
+                """);
 
         while (searchUserChoice != 9) {
             System.out.println("""
-                      Search by:               
-                    1. Alias name
-                    2. Real name
-                    3. Power      
-                                 
-                    9. Back to menu
+                      Search by:
+                      1. Alias name
+                      2. Real name
+                      3. Power
+                      9. Back to menu
                     """);
 
             searchUserChoice = scanner.nextInt();
@@ -188,12 +192,16 @@ public class UserInterface {
 
         int editUserChoice = -1;
 
-        System.out.println("\nSuperhero Edit Tool\n" +
-                "________________________________");
+        System.out.println("""
+
+                Superhero Edit Tool
+                ________________________________
+                """);
 
         while (editUserChoice != 9) {
             System.out.println("""               
-                    1. Edit Superhero              
+                    1. Edit Superhero
+                                        
                     9. Back to menu
                     """);
 
@@ -215,22 +223,21 @@ public class UserInterface {
             System.out.println(i + 1 + ConsoleColors.GREEN + " Superhero: \n" + db.getHeros().get(i) + ConsoleColors.RESET);
         }
 
-        //TODO Fejl ved indtast af højere nummer!!!!!!!!!!
-
         //Brugerdialog for redigere i oplysninger.
         //-----------------------------------
 
         System.out.println("Enter Superhero number to edit informations:");
         int numb = scanner.nextInt();
-        Superhero editHero = null;
+        Superhero editHero;
         scanner.nextLine();
         if (numb - 1 >= db.getHeros().size()) {
-            System.out.println("This number dont exits in the database");
+            System.out.println(ConsoleColors.RED + "\nThis number don't exits in the database. Please try again" + ConsoleColors.RESET);
         } else {
             editHero = db.getHeros().get(numb - 1);
             System.out.println("Edit Person: " + editHero);
 
-            System.out.println(ConsoleColors.BLUE + "Edit data and press ENTER. If data is not to be edited press ENTER\n" + ConsoleColors.RESET);
+
+            System.out.println(ConsoleColors.BLUE + "Edit data and press" + ConsoleColors.RED + " ENTER " + ConsoleColors.RESET + ConsoleColors.BLUE + "If data is not to be edited press" + ConsoleColors.RED + " ENTER\n " + ConsoleColors.RESET);
 
 
             System.out.println("Current Real name: " + editHero.getName());
@@ -274,10 +281,17 @@ public class UserInterface {
     public int readInteger() {
         while (!scanner.hasNextInt()) {
             String errorMsg = scanner.next();
-            System.out.println(ConsoleColors.RED + "Error! You can't enter \"" + errorMsg + "\" Enter a number." + ConsoleColors.RESET);
+            System.out.println(ConsoleColors.RED + "Invalid value \"" + errorMsg + "\" Please enter a number" + ConsoleColors.RESET);
         }
-        int result = scanner.nextInt();
-        return result;
+        return scanner.nextInt();
+    }
+
+    public double readDouble() {
+        while (!scanner.hasNextDouble()) {
+            String errorMsg = scanner.next();
+            System.out.println(ConsoleColors.RED + "Invalid value \"" + errorMsg + "\" Please enter a number" + ConsoleColors.RESET);
+        }
+        return scanner.nextDouble();
     }
 }
 
@@ -309,3 +323,18 @@ public class UserInterface {
             searchByYear();
         else if (searchUserChoice == 5)
             searchByStrength();*/ // toolHandlingUserChoice
+
+/*   int year = 0;
+        String input; //= scanner.nextLine();
+        boolean wrongUserInput = true;
+        while (wrongUserInput) {
+            try {
+                input = scanner.nextLine();
+                year = Integer.parseInt(input);
+                wrongUserInput = false;
+            } catch (NumberFormatException e) {
+                //Fejlhåndtering
+                System.out.println("You need to enter a number");
+                //year = Integer.parseInt(input);
+            }
+        }*/ // try & catch metode til at brugeren skal skrive et tal og ikke et bogstav.
