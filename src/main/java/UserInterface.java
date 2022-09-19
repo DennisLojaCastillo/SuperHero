@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -39,6 +40,26 @@ public class UserInterface {
     }
 
     //------------------------------------------------------------------------------------------------
+
+    //TODO Lav en menu, så den går tilbage til hovedmenuen!
+  /*public void addToolHandlingUserChoice() {
+
+        int addSuperheroChoice = -1;
+
+        System.out.println("\nSuperhero Edit Tool\n" +
+                "________________________________");
+
+        while (addSuperheroChoice != 9) {
+            System.out.println("""
+                    1. Edit Superhero
+                    9. Back to menu
+                    """);
+
+            addSuperheroChoice = scanner.nextInt();
+            scanner.nextLine(); // Håndtering af Scanner bug
+            addSuperheroChoice(addSuperheroChoice);
+        }
+    }*/
 
     public void addSuperhero() {
         System.out.println(ConsoleColors.BLUE + "Enter the superhero's real name: ");
@@ -94,7 +115,7 @@ public class UserInterface {
 
         int searchUserChoice = -1;
 
-        System.out.println("\nWelcome to the Superhero Search Engine\n" +
+        System.out.println("\nSuperhero Search Engine\n" +
                 "________________________________");
 
         while (searchUserChoice != 9) {
@@ -167,7 +188,7 @@ public class UserInterface {
 
         int editUserChoice = -1;
 
-        System.out.println("\nWelcome to the Superhero Edit Tool\n" +
+        System.out.println("\nSuperhero Edit Tool\n" +
                 "________________________________");
 
         while (editUserChoice != 9) {
@@ -191,57 +212,61 @@ public class UserInterface {
 
     public void editTool() {
         for (int i = 0; i < db.getHeros().size(); i++) {
-            System.out.println(i + 1 + " Superhero: \n" + db.getHeros().get(i));
+            System.out.println(i + 1 + ConsoleColors.GREEN + " Superhero: \n" + db.getHeros().get(i) + ConsoleColors.RESET);
         }
+
+        //TODO Fejl ved indtast af højere nummer!!!!!!!!!!
 
         //Brugerdialog for redigere i oplysninger.
         //-----------------------------------
 
         System.out.println("Enter Superhero number to edit informations:");
         int numb = scanner.nextInt();
+        Superhero editHero = null;
         scanner.nextLine();
+        if (numb - 1 >= db.getHeros().size()) {
+            System.out.println("This number dont exits in the database");
+        } else {
+            editHero = db.getHeros().get(numb - 1);
+            System.out.println("Edit Person: " + editHero);
 
-        Superhero editHero = db.getHeros().get(numb - 1); //Index starter fra 0
-        System.out.println("Edit Person: " + editHero);
-
-        System.out.println("Edit data and press ENTER. If data is not to be edited press ENTER");
+            System.out.println(ConsoleColors.BLUE + "Edit data and press ENTER. If data is not to be edited press ENTER\n" + ConsoleColors.RESET);
 
 
-        System.out.println("Real name: " + editHero.getName());
-        System.out.println("Please enter the new NAME below");
-        String newName = scanner.nextLine();
-        if (!newName.isEmpty()) {
-            editHero.setName(newName);
+            System.out.println("Current Real name: " + editHero.getName());
+            System.out.println("Please enter the new NAME below");
+            String newName = scanner.nextLine();
+            if (!newName.isEmpty()) {
+                editHero.setName(newName);
+            }
+            System.out.println("Current Alias name: " + editHero.getAlias());
+            System.out.println("Please enter the new ALIAS name below");
+            String newAlias = scanner.nextLine();
+            if (!newAlias.isEmpty()) {
+                editHero.setAlias(newAlias);
+            }
+
+            System.out.println("Current Super Power: " + editHero.getPower());
+            System.out.println("Please enter the new SUPER POWER below");
+            String newPower = scanner.nextLine();
+            if (!newPower.isEmpty()) {
+                editHero.setPower(newPower);
+            }
+
+            System.out.println("Current Year of publication: " + editHero.getYear());
+            System.out.println("Please enter the new YEAR below");
+            String newYear = scanner.nextLine();
+            if (!newYear.isEmpty()) {
+                editHero.setYear(Integer.parseInt(newYear));
+            }
+
+            System.out.println("Strength: " + editHero.getStrength());
+            System.out.println("Please enter the new STRENGTH below *OBS! You need to make a DOT (.) instead of COMMA");
+            String newStrength = scanner.nextLine();
+            if (!newStrength.isEmpty()) {
+                editHero.setStrength(Double.parseDouble(newStrength));
+            }
         }
-        System.out.println("Alias name: " + editHero.getAlias());
-        System.out.println("Please enter the new ALIAS name below");
-        String newAlias = scanner.nextLine();
-        if (!newAlias.isEmpty()) {
-            editHero.setAlias(newAlias);
-        }
-
-        System.out.println("Super Power: " + editHero.getPower());
-        System.out.println("Please enter the new SUPER POWER below");
-        String newPower = scanner.nextLine();
-        if (!newPower.isEmpty()) {
-            editHero.setPower(newPower);
-        }
-
-        System.out.println("Year of publication: " + editHero.getYear());
-        System.out.println("Please enter the new YEAR below");
-        String newYear = scanner.nextLine();
-        if (!newYear.isEmpty()) {
-            editHero.setYear(Integer.parseInt(newYear));
-        }
-
-        System.out.println("Strength: " + editHero.getStrength());
-        System.out.println("Please enter the new STRENGTH below *OBS! You need to make a DOT (.) instead of COMMA");
-        String newStrength = scanner.nextLine();
-        if (!newStrength.isEmpty()) {
-            editHero.setStrength(Double.parseDouble(newStrength));
-        }
-
-
     }
 
     //------------------------------------------------------------------------------------------------
