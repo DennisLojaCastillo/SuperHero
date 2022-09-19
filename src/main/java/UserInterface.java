@@ -9,17 +9,17 @@ public class UserInterface {
     public void startProgram() {
         int userChoice = -1;
 
-        System.out.println("Welcome to the Superhero-Program\n" +
+        System.out.println(ConsoleColors.CYAN + "Welcome to the Superhero-Program\n" +
                 "________________________________");
 
         while (userChoice != 9) {
-            System.out.println("""                  
+            System.out.println(ConsoleColors.CYAN + """                  
                     1. Add new Superhero
                     2. Superhero List
                     3. Search Superhero
                     4. Edit Superhero List
                     9. End Program
-                    """);
+                    """ + ConsoleColors.RESET);
 
             userChoice = scanner.nextInt();
             scanner.nextLine(); // Håndtering af Scanner bug
@@ -42,19 +42,19 @@ public class UserInterface {
     //------------------------------------------------------------------------------------------------
 
     public void addSuperhero() {
-        System.out.println("Enter the superhero's real name: ");
+        System.out.println(ConsoleColors.BLUE + "Enter the superhero's real name: ");
         String name = scanner.nextLine();
 
-        System.out.println("Enter the superhero's alias: ");
+        System.out.println(ConsoleColors.BLUE +"Enter the superhero's alias: ");
         String alias = scanner.nextLine();
 
-        System.out.println("Enter the superhero's power: ");
+        System.out.println(ConsoleColors.BLUE +"Enter the superhero's power: ");
         String power = scanner.nextLine();
 
-        System.out.println("Enter the superhero's year of publication: ");
+        System.out.println(ConsoleColors.BLUE +"Enter the superhero's year of publication: ");
         int year = scanner.nextInt();
 
-        System.out.println("Enter the superhero's strength power: (Range is from 1-10) \n*OBS You need to tab with comma (,)*");
+        System.out.println(ConsoleColors.BLUE +"Enter the superhero's strength power: (Range is from 1-10) \n*OBS You need to tab with comma (,)*" + ConsoleColors.RESET);
         double strength = scanner.nextDouble();
 
         db.addSuperhero(name, alias, power, year, strength);
@@ -64,11 +64,11 @@ public class UserInterface {
 
     public void superheroList() {
         if (db.getHeros().size() == 0) {
-            System.out.println("\nThere's no Superhero registered...\n");
+            System.out.println(ConsoleColors.RED +"\nThere's no Superhero registered...\n" + ConsoleColors.RESET);
         } else {
-            System.out.println("List of Superhero's registered\n");
+            System.out.println(ConsoleColors.GREEN_BRIGHT + "List of Superhero's registered\n" + ConsoleColors.RESET);
             for (Superhero superhero : db.getHeros()) {
-                System.out.println(superhero);
+                System.out.println(ConsoleColors.BLUE + superhero + ConsoleColors.RESET);
             }
         }
     }
