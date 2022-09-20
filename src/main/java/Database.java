@@ -2,13 +2,7 @@ import java.util.ArrayList;
 
 public class Database {
 
-    private ArrayList<Superhero> heroes = new ArrayList();
-
-    public Database() {
-        heroes.add(new Superhero("Peter Parker", "Spider Man", "Spider-Power", 1992, 11.21));
-        heroes.add(new Superhero("Clark Kent", "Super Man", "Strong", 1943, 34.31));
-        heroes.add(new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21));
-    }
+    private final ArrayList<Superhero> heroes = new ArrayList<>();
 
     public void addSuperhero(String name, String alias, String power, int year, double strength) {
         heroes.add(new Superhero(name, alias, power, year, strength));
@@ -65,7 +59,11 @@ public class Database {
         heroes.add(new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21));
     }*/ //Test Data
 
-
+/*public Database() {
+        heroes.add(new Superhero("Peter Parker", "Spider Man", "Spider-Power", 1992, 11.21));
+        heroes.add(new Superhero("Clark Kent", "Super Man", "Strong", 1943, 34.31));
+        heroes.add(new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21));
+    }*/ //Database Superhero test persons
 
 /* public Superhero searchByYear(int year) {
         for (Superhero superhero : heroes) {
