@@ -21,6 +21,7 @@ public class UserInterface {
                     2. Superhero List
                     3. Search Superhero
                     4. Edit Superhero List
+                    5. Delete Superhero
                     9. End Program
                     """ + ConsoleColors.RESET);
 
@@ -41,6 +42,8 @@ public class UserInterface {
             startSearchTool();
         else if (userChoice == 4)
             editToolHandlingUserChoice();
+        else if (userChoice == 5)
+            deleteToolHandlingUserChoice();
         else if (userChoice != 9) {
             System.out.println(ConsoleColors.RED + """
                                         
@@ -316,6 +319,65 @@ public class UserInterface {
         }
     }
 
+    //------------------------------------------------------------------------------------------------
+
+    public void deleteToolHandlingUserChoice() {
+
+        int deleteUserChoice = -1;
+
+        System.out.println("""
+
+                Superhero Delete Tool
+                ________________________________
+                """);
+
+        while (deleteUserChoice != 9) {
+            System.out.println("""               
+                    1. Delete Superhero
+                    9. Back to menu
+                    """);
+
+            deleteUserChoice = readInteger();
+            scanner.nextLine(); // Håndtering af Scanner bug
+            deleteToolHandlingUserChoice(deleteUserChoice);
+        }
+    }
+
+    //-----------------------------------
+
+    private void deleteToolHandlingUserChoice(int deleteUserChoice) {
+        if (deleteUserChoice == 1)
+            deleteHero(); //Crud operation
+        else if (deleteUserChoice != 9) {
+            System.out.println(ConsoleColors.RED + """
+                                        
+                    Could not handle input. Please try again
+                    Choose menu item 1 or tab 9 back to menu
+                    """ + ConsoleColors.RESET);
+        }
+    }
+
+    public void deleteHero() {
+
+        if (db.getHeros().size() == 0) {
+            System.out.println(ConsoleColors.RED + "\nThere's no Superhero registered...\n" + ConsoleColors.RESET);
+        } else {
+            System.out.println(ConsoleColors.GREEN_BRIGHT + "List of Superhero's registered\n" + ConsoleColors.RESET);
+            for (int i = 0; i < db.getHeros().size(); i++) {
+                System.out.println(i + 1 + ConsoleColors.GREEN + " Superhero: \n" + db.getHeros().get(i) + ConsoleColors.RESET);
+            }
+            System.out.println("Enter Superhero number, you want to delete: ");
+
+            int nr = readInteger();
+
+            if (nr <= db.getHeros().size()) {
+                db.getHeros().remove(nr -1);
+                System.out.println("\nSuperhero deleted!\n");
+            } else {
+                System.out.println("Error! - Please try again\n");
+            }
+        }
+    }
     //------------------------------------------------------------------------------------------------
     // Læser om det er et tal (int eller double) og inputtet ikke er et bogstav.
     public int readInteger() {

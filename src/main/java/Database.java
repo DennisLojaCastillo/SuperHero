@@ -1,8 +1,30 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
 
+    public Database() {
+        heroes.add(new Superhero("Peter Parker", "Spider Man", "Spider-Power", 1992, 11.21));
+        heroes.add(new Superhero("Clark Kent", "Super Man", "Strong", 1943, 34.31));
+        heroes.add(new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21));
+
+        //---------------------------------------------------------------------------------
+        // Egner sig bedst til eksamen!
+        Superhero s2 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
+        heroes.add(s2);
+        Superhero s3 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
+        heroes.add(s3);
+        Superhero s4 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
+        heroes.add(s4);
+
+        Superhero s5 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
+        Superhero s6 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
+        Superhero s7 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
+        heroes.addAll(List.of(s5,s6,s7));
+    }
+
     private final ArrayList<Superhero> heroes = new ArrayList<>();
+
 
     public void addSuperhero(String name, String alias, String power, int year, double strength) {
         heroes.add(new Superhero(name, alias, power, year, strength));
@@ -48,10 +70,30 @@ public class Database {
         }
         return null;
     }
+
+   // public Superhero deleteHero()
 }
 
 
+/* public Database() {
+        heroes.add(new Superhero("Peter Parker", "Spider Man", "Spider-Power", 1992, 11.21));
+        heroes.add(new Superhero("Clark Kent", "Super Man", "Strong", 1943, 34.31));
+        heroes.add(new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21));
 
+        //---------------------------------------------------------------------------------
+        // Egner sig bedst til eksamen!
+        Superhero s2 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
+        heroes.add(s2);
+        Superhero s3 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
+        heroes.add(s3);
+        Superhero s4 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
+        heroes.add(s4);
+
+        Superhero s5 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
+        Superhero s6 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
+        Superhero s7 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
+        heroes.addAll(List.of(s5,s6,s7));
+    }*/ // Test Data - inkl. eksamenssituation
 
 /*public Database() {
         heroes.add(new Superhero("Peter Parker", "Spider Man", "Spider-Power", 1992, 11.21));
