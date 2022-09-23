@@ -1,5 +1,6 @@
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
+
 
 public class Database {
 
@@ -7,20 +8,6 @@ public class Database {
         heroes.add(new Superhero("Peter Parker", "Spider Man", "Spider-Power", 1992, 11.21));
         heroes.add(new Superhero("Clark Kent", "Super Man", "Strong", 1943, 34.31));
         heroes.add(new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21));
-
-        //---------------------------------------------------------------------------------
-        // Egner sig bedst til eksamen!
-        Superhero s2 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
-        heroes.add(s2);
-        Superhero s3 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
-        heroes.add(s3);
-        Superhero s4 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
-        heroes.add(s4);
-
-        Superhero s5 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
-        Superhero s6 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
-        Superhero s7 = new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21);
-        heroes.addAll(List.of(s5,s6,s7));
     }
 
     private final ArrayList<Superhero> heroes = new ArrayList<>();
@@ -34,17 +21,16 @@ public class Database {
         return heroes;
     }
 
+    //TODO Lav en hvor metoden godtager både store og små bogstaver
+    public ArrayList<Superhero> searchByAlias(String alias) {
+        ArrayList<Superhero> heroList = new ArrayList<>();
 
-    public Superhero searchByAlias(String alias) {
         for (Superhero superhero : heroes) {
-            if (superhero.getAlias().equals(alias)) {
-                return superhero;
-            }
-            if (superhero.getAlias().equalsIgnoreCase(alias)) {
-                return superhero;
+            if (superhero.getAlias().contains(alias)) {
+                heroList.add(superhero);
             }
         }
-        return null;
+        return heroList;
     }
 
     public Superhero searchByName(String name) {

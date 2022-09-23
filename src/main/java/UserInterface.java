@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -166,10 +167,10 @@ public class UserInterface {
     private void toolHandlingUserChoice(int searchUserChoice) {
         if (searchUserChoice == 1)
             searchByAlias(); //Crud operation
-        else if (searchUserChoice == 2)
-            searchByName(); //Crud operation
-        else if (searchUserChoice == 3)
-            searchByPower();
+        //else if (searchUserChoice == 2)
+            //searchByName(); //Crud operation
+       // else if (searchUserChoice == 3)
+            //searchByPower();
         else if (searchUserChoice != 9) {
             System.out.println(ConsoleColors.RED + """
                                         
@@ -180,20 +181,24 @@ public class UserInterface {
     }
 
     //-----------------------------------
-
+    //TODO Lav dem på alle søgefunktioner!
     public void searchByAlias() {
 
         System.out.println("Search Superhero by alias name: ");
         String findHero = scanner.nextLine();
-        Superhero superhero = db.searchByAlias(findHero);
-        if (superhero != null) {
-            System.out.println("\nInformation\n" + superhero);
-        } else {
+        ArrayList<Superhero> superhero = db.searchByAlias(findHero);
+        if (superhero.size() == 0 ) {
             System.out.println(ConsoleColors.RED + "\nFound nothing with this name.\n" + ConsoleColors.RESET);
+        } else {
+            System.out.println("\nInformation\n");
+            for (Superhero sh : superhero) {
+                System.out.println(sh);
+                System.out.println();
+            }
         }
     }
 
-    public void searchByName() {
+    /*public void searchByName() {
         System.out.println("Search Superhero by real name: ");
         String findHero = scanner.nextLine();
         Superhero superhero = db.searchByName(findHero);
@@ -205,7 +210,9 @@ public class UserInterface {
 
     }
 
-    public void searchByPower() {
+     */
+
+    /*public void searchByPower() {
         System.out.println("Search Superhero by superpower: ");
         String findHero = scanner.nextLine();
         Superhero superhero = db.searchByPower(findHero);
@@ -215,6 +222,8 @@ public class UserInterface {
             System.out.println(ConsoleColors.RED + "\nFound nothing with this name.\n" + ConsoleColors.RESET);
         }
     }
+
+     */
 
     //------------------------------------------------------------------------------------------------
 
