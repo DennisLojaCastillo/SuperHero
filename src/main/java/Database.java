@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Collections;
+
 
 
 public class Database {
@@ -32,32 +32,6 @@ public class Database {
         }
         return heroList;
     }
-
-    public Superhero searchByName(String name) {
-        for (Superhero superhero : heroes) {
-            if (superhero.getName().equals(name)) {
-                return superhero;
-            }
-            if (superhero.getName().equalsIgnoreCase(name)) {
-                return superhero;
-            }
-        }
-        return null;
-    }
-
-    public Superhero searchByPower(String power) {
-        for (Superhero superhero : heroes) {
-            if (superhero.getPower().equals(power)) {
-                return superhero;
-            }
-            if (superhero.getPower().equalsIgnoreCase(power)) {
-                return superhero;
-            }
-        }
-        return null;
-    }
-
-   // public Superhero deleteHero()
 }
 
 
@@ -111,5 +85,27 @@ public class Database {
         return null;
     }*/ //Metoder til UserInterFace
 
+/*public Superhero searchByName(String name) {
+        for (Superhero superhero : heroes) {
+            if (superhero.getName().equals(name)) {
+                return superhero;
+            }
+            if (superhero.getName().equalsIgnoreCase(name)) {
+                return superhero;
+            }
+        }
+        return null;
+    }
 
+    public Superhero searchByPower(String power) {
+        for (Superhero superhero : heroes) {
+            if (superhero.getPower().equals(power)) {
+                return superhero;
+            }
+            if (superhero.getPower().equalsIgnoreCase(power)) {
+                return superhero;
+            }
+        }
+        return null;
+    }*/ //Søgefunktion med navn og superpower
 

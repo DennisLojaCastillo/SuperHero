@@ -198,35 +198,10 @@ public class UserInterface {
         }
     }
 
-    /*public void searchByName() {
-        System.out.println("Search Superhero by real name: ");
-        String findHero = scanner.nextLine();
-        Superhero superhero = db.searchByName(findHero);
-        if (superhero != null) {
-            System.out.println("\nInformation\n" + superhero);
-        } else {
-            System.out.println(ConsoleColors.RED + "\nFound nothing with this name.\n" + ConsoleColors.RESET);
-        }
 
-    }
-
-     */
-
-    /*public void searchByPower() {
-        System.out.println("Search Superhero by superpower: ");
-        String findHero = scanner.nextLine();
-        Superhero superhero = db.searchByPower(findHero);
-        if (superhero != null) {
-            System.out.println("\nInformation\n" + superhero);
-        } else {
-            System.out.println(ConsoleColors.RED + "\nFound nothing with this name.\n" + ConsoleColors.RESET);
-        }
-    }
-
-     */
 
     //------------------------------------------------------------------------------------------------
-
+    // Rediger superhelt menu
     public void editToolHandlingUserChoice() {
 
         int editUserChoice = -1;
@@ -263,6 +238,7 @@ public class UserInterface {
         }
     }
 
+    //Redigere Superhelt
     public void editTool() {
         if (db.getHeros().size() == 0) {
             System.out.println(ConsoleColors.RED + "\nThere's no Superhero registered...\n" + ConsoleColors.RESET);
@@ -329,7 +305,7 @@ public class UserInterface {
     }
 
     //------------------------------------------------------------------------------------------------
-
+    //Slet superhelt Menu
     public void deleteToolHandlingUserChoice() {
 
         int deleteUserChoice = -1;
@@ -353,6 +329,7 @@ public class UserInterface {
     }
 
     //-----------------------------------
+    //Sletter en Superhelt
 
     private void deleteToolHandlingUserChoice(int deleteUserChoice) {
         if (deleteUserChoice == 1)
@@ -375,13 +352,13 @@ public class UserInterface {
             for (int i = 0; i < db.getHeros().size(); i++) {
                 System.out.println(i + 1 + ConsoleColors.GREEN + " Superhero: \n" + db.getHeros().get(i) + ConsoleColors.RESET);
             }
-            System.out.println("Enter Superhero number, you want to delete: ");
+            System.out.println("Enter Superhero number to delete Superhero: ");
 
             int nr = readInteger();
 
             if (nr <= db.getHeros().size()) {
                 db.getHeros().remove(nr -1);
-                System.out.println("\nSuperhero deleted!\n");
+                System.out.println(ConsoleColors.GREEN_BOLD +"\nSuperhero deleted!\n" + ConsoleColors.RESET);
             } else {
                 System.out.println("Error! - Please try again\n");
             }
@@ -449,3 +426,30 @@ public class UserInterface {
                 //year = Integer.parseInt(input);
             }
         }*/ // try & catch metode til at brugeren skal skrive et tal og ikke et bogstav.
+
+/*public void searchByName() {
+        System.out.println("Search Superhero by real name: ");
+        String findHero = scanner.nextLine();
+        Superhero superhero = db.searchByName(findHero);
+        if (superhero != null) {
+            System.out.println("\nInformation\n" + superhero);
+        } else {
+            System.out.println(ConsoleColors.RED + "\nFound nothing with this name.\n" + ConsoleColors.RESET);
+        }
+
+    }
+
+
+
+    public void searchByPower() {
+        System.out.println("Search Superhero by superpower: ");
+        String findHero = scanner.nextLine();
+        Superhero superhero = db.searchByPower(findHero);
+        if (superhero != null) {
+            System.out.println("\nInformation\n" + superhero);
+        } else {
+            System.out.println(ConsoleColors.RED + "\nFound nothing with this name.\n" + ConsoleColors.RESET);
+        }
+    }
+
+     */ //Søgefunktion med navn og superpower
